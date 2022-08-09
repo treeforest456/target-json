@@ -21,7 +21,7 @@ def emit_state(state):
         sys.stdout.flush()
 
 
-def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, bookmark_keys={}, destination_path):
+def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, bookmark_keys={}, destination_path=''):
     state = None
     stream = None
     schemas = {}
