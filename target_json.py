@@ -21,12 +21,13 @@ def emit_state(state):
         sys.stdout.flush()
 
 
-def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, bookmark_keys={}):
+def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, bookmark_keys={}, destination_path):
     state = None
     stream = None
     schemas = {}
     key_properties = {}
     validators = {}
+    destination_path = ''
     
     now = datetime.now().strftime('%Y%m%dT%H%M%S')
 
@@ -50,8 +51,9 @@ def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, b
             validators[o['stream']].validate(o['record'])
 
             filename = o['stream'] + '-' + now + '.json'
+            filepath = os.path.join(destination_path, file_name)
             
-            with open(filename, 'a') as json_file:
+            with open(filepath, 'a') as json_file:
                 record = bq_hook(o['record']) if bq_field_name_hook else o['record']
                 json_file.write(json.dumps(record) + delimiter)
 
@@ -124,6 +126,7 @@ def main():
                           args.state,
                           config.get('bq_field_name_hook', False),
                           config.get('bookmark_keys', {}))
+                          config.get('destination_path', {}))
         
     emit_state(state)
     logger.debug("Exiting normally")
