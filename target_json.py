@@ -125,7 +125,7 @@ def main():
                           input,
                           args.state,
                           config.get('bq_field_name_hook', False),
-                          config.get('bookmark_keys', {}))
+                          config.get('bookmark_keys', {}),
                           config.get('destination_path', {}))
         
     emit_state(state)
