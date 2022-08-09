@@ -121,12 +121,7 @@ def main():
 
     input = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
     #with open('ads_insights.json', 'r') as input:
-    state = persist_lines(config.get('delimiter', ''),
-                          input,
-                          args.state,
-                          config.get('bq_field_name_hook', False),
-                          config.get('bookmark_keys', {}),
-                          config.get('destination_path', ''))
+    state = persist_lines(config.get('delimiter', ''), input, args.state, config.get('bq_field_name_hook', False), config.get('bookmark_keys', {}), config.get('destination_path', ''))
 
     emit_state(state)
     logger.debug("Exiting normally")
