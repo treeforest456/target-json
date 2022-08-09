@@ -50,7 +50,8 @@ def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, b
 
             validators[o['stream']].validate(o['record'])
 
-            filename = o['stream'] + '-' + now + '.json'
+            # filename = o['stream'] + '-' + now + '.json'
+            filename = o['stream'] + '.json'
             filepath = os.path.join(destination_path, filename)
             
             with open(filepath, 'a') as json_file:
