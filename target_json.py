@@ -28,7 +28,6 @@ def persist_lines(delimiter, lines, state_file=None, bq_field_name_hook=False, b
     schemas = {}
     key_properties = {}
     validators = {}
-    destination_path = ''
     
     now = datetime.now().strftime('%Y%m%dT%H%M%S')
 
