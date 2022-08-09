@@ -126,8 +126,8 @@ def main():
                           args.state,
                           config.get('bq_field_name_hook', False),
                           config.get('bookmark_keys', {}),
-                          config.get('destination_path', {}))
-        
+                          config.get('destination_path', ''))
+
     emit_state(state)
     logger.debug("Exiting normally")
 
